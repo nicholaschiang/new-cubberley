@@ -1,0 +1,79 @@
+@mixin reveal() {
+  opacity: 0;
+  -webkit-transform: translateY(25px);
+  transform: translateY(25px);
+  will-change: transform;
+}
+
+@mixin reveal-active($delay: 0s) {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  transition-property: opacity, transform, -webkit-transform;
+  -webkit-transition-duration: 1.2s, 1.4s;
+  transition-duration: 1.2s, 1.4s;
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1),cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1),cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -webkit-transition-delay: $delay, $delay;
+  transition-delay: $delay, $delay;
+}
+
+.wrapper {
+  max-width: var(--geist-page-width-with-margin);
+  padding: 24px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  min-height: 60vh;
+
+  .content {
+    &.appear {
+      .new { @include reveal }
+      .cubberley { @include reveal }
+      .subtitle { @include reveal }
+    }
+
+    &.appearActive {
+      .new { @include reveal-active(0s) }
+      .cubberley { @include reveal-active(0.15s) }
+      .subtitle { @include reveal-active(0.3s) }
+    }
+
+    .new {
+      margin: 0;
+      font-size: 5.6rem;
+      font-weight: 300;
+      font-family: 'Josefin Sans';
+      color: #42ab1f;
+      text-transform: uppercase;
+      letter-spacing: 1rem;
+      line-height: 1.25;
+    }
+
+    .cubberley {
+      margin: 0;
+      font-size: 7rem;
+      font-weight: 400;
+      font-family: 'Josefin Sans';
+      color: #016737;
+      text-transform: uppercase;
+      letter-spacing: 0.65rem;
+      line-height: 1;
+    }
+
+    .subtitle {
+      margin: 0;
+      font-size: 5rem;
+      font-weight: 400;
+      font-family: 'Cookie';
+      color: #42ab1f;
+      text-transform: lowercase;
+      letter-spacing: 0.25rem;
+      line-height: 1;
+    }
+  }
+}
