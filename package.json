@@ -1,19 +1,30 @@
 {
   "name": "new-cubberley",
+  "description": "Website for non-profit managing PA's Cubberley Community Center.",
+  "repository": "nicholaschiang/new-cubberley",
+  "author": "Nicholas Chiang <nicholas.h.chiang@gmail.com>",
+  "homepage": "newcubberley.now.sh",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
+  "keywords": [
+    "Cubberley",
+    "Next.js",
+    "Typescript"
+  ],
   "dependencies": {
     "next": "9.4.4",
     "next-images": "^1.4.0",
     "nprogress": "^0.2.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "vanilla-tilt": "^1.7.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.14",
