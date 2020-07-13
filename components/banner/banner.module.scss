@@ -1,8 +1,9 @@
+@use 'styles/common';
+
 .wrapper {
   width: 100vw;
   max-width: 100%;
   position: relative;
-  margin-top: -50px;
   overflow: hidden;
 
   .diagonalTop, .diagonalBottom {
@@ -25,10 +26,7 @@
     background: var(--primary);
 
     .content {
-      max-width: var(--geist-page-width-with-margin);
-      margin: 0 auto;
-      padding: 0 24px;
-      box-sizing: border-box;
+      @include common.wrapper;
       color: var(--on-primary);
     }
   }

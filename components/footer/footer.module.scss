@@ -1,3 +1,5 @@
+@use 'styles/common';
+
 .footer {
   display: grid;
   grid-template-columns: 1fr [content] 12fr 1fr;
@@ -35,14 +37,13 @@
 }
 
 .contentWrapper {
+  @include common.wrapper;
   grid-area: content;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr;
-  max-width: var(--geist-page-width-with-margin);
   width: 100vw;
   margin: 40px auto;
-  padding: 0 24px;
   box-sizing: border-box;
 }
 

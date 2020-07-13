@@ -1,0 +1,66 @@
+@use 'styles/fonts';
+@use 'styles/common';
+
+// Update: September 2016, after a lot of grumbling, decided to simplify this.
+// Cons: The color accuracy has gone down and mostly works on very dark or very
+// light backgrounds.
+// Pros: The code is far simpler and doesn't require doubling-up the text.
+// @see {@link https://css-tricks.com/how-to-do-knockout-text/}
+@mixin gradient-text($gradient, $bg: 'light') {
+  @supports (mix-blend-mode: lighten) {
+    display: inline-block;
+    position: relative;
+
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      background: unquote($gradient);
+      pointer-events: none;
+    }
+
+    @if ($bg == 'light') {
+      color: #000;
+      background: #fff;
+      mix-blend-mode: multiply;
+
+      &::before {
+        mix-blend-mode: screen;
+      }
+    } @else {
+      color: #fff;
+      background: #000;
+      mix-blend-mode: lighten;
+
+      &::before {
+        mix-blend-mode: multiply;
+      }
+    }
+  }
+}
+
+.wrapper {
+  padding: 96px 0 48px;
+
+  .content {
+    @include common.wrapper;
+
+    .title {
+      @include fonts.header;
+      @include gradient-text(
+        'linear-gradient(to right, var(--primary) 9.38%, var(--secondary) 88.54%)',
+        'light'
+      );
+      font-size: 72px !important;
+      display: inline-block;
+      padding-bottom: 5px; // Otherwise, words with 'g' and 'y' get cut off.
+      border: 1px solid #fff; // Otherwise, the background peeks out on mobile.
+      margin: -1px;
+    }
+  }
+}

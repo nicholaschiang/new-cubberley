@@ -1,3 +1,5 @@
+@use 'styles/common';
+
 .wrapper {
   position: sticky;
   top: 0;
@@ -12,15 +14,13 @@
   z-index: 4;
 
   .header {
+    @include common.wrapper;
     width: 100%;
-    max-width: var(--geist-page-width-with-margin);
     margin: auto;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
-    box-sizing: border-box;
 
     .left {
       display: flex;
@@ -39,14 +39,15 @@
   padding: 20px 0;
   margin-right: 10px;
   text-decoration: none;
-  
-  span {
-    color: var(--primary);
-    font-family: var(--font-sans);
-    font-weight: 700;
-    font-size: 24px;
-    line-height: 24px;
-    text-decoration: none;
+  text-transform: uppercase;
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+
+  .light {
+    color: var(--secondary);
   }
 }
 

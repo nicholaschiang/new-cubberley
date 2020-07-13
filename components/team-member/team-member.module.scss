@@ -1,0 +1,70 @@
+@use 'styles/fonts';
+@use 'styles/common';
+
+.wrapper {
+  border-top: 1px solid var(--accents-2);
+
+  .content {
+    @include common.wrapper;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 64px 24px 96px;
+
+    .left {
+      flex: 1;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: stretch;
+      
+      .name {
+        @include fonts.header;
+        margin: 0;
+      }
+      
+      .title {
+        @include fonts.subheader;
+        color: var(--accents-6);
+        margin-top: 18px;
+      }
+
+      .bio {
+        @include fonts.body;
+        border-top: 1px solid var(--accents-2);
+        margin-top: 48px;
+        padding-top: 48px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-start;
+
+      .img {
+        height: 440px;
+        width: 315px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-color: transparent;
+        border-radius: 4px;
+        box-shadow: var(--shadow-large);
+        overflow: hidden;
+        max-width: 100%;
+      }
+    }
+
+    &.flipped {
+      flex-direction: row-reverse;
+
+      .left, .right {
+        align-items: flex-start;
+        justify-content: flex-end;
+      }
+    }
+  }
+}
