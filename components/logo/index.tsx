@@ -1,9 +1,9 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import styles from './hero.module.scss';
+import styles from './logo.module.scss';
 
-export default function Hero(): JSX.Element {
+export default function Logo(): JSX.Element {
   return (
     <div className={styles.wrapper}>
       <CSSTransition in appear timeout={1700} classNames={styles}>

@@ -1,6 +1,8 @@
 :root {
-  --primary: var(--geist-success);
-  --secondary: var(--geist-success);
+  --primary: #016737;
+  --on-primary: #fff;
+  --secondary: #42ab1f;
+  --on-secondary: #fff;
   --geist-success-lighter: #d3e5ff;
   --geist-success-light: #3291ff;
   --geist-success: #0070f3;

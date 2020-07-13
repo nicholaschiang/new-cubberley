@@ -1,0 +1,35 @@
+.wrapper {
+  width: 100vw;
+  max-width: 100%;
+  position: relative;
+  margin-top: -50px;
+  overflow: hidden;
+
+  .diagonalTop, .diagonalBottom {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 50px 100vw 0 0;
+  }
+
+  .diagonalTop {
+    border-color: transparent var(--primary) transparent transparent;
+  }
+
+  .diagonalBottom {
+    border-color: var(--primary) transparent transparent transparent;
+  }
+
+  .background {
+    padding: 48px 0;
+    background: var(--primary);
+
+    .content {
+      max-width: var(--geist-page-width-with-margin);
+      margin: 0 auto;
+      padding: 0 24px;
+      box-sizing: border-box;
+      color: var(--on-primary);
+    }
+  }
+}

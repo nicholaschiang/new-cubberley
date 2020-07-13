@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Hero from 'components/hero';
+import Logo from 'components/logo';
 import About from 'components/about';
 import Footer from 'components/footer';
 
@@ -10,7 +10,7 @@ export default function Home(): JSX.Element {
       <Head>
         <title>New Cubberley</title>
       </Head>
-      <Hero />
+      <Logo />
       <About />
       <Footer />
     </>
