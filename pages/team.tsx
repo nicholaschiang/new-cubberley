@@ -4,8 +4,16 @@ import Footer from 'components/footer';
 import Title from 'components/title';
 import TeamMember from 'components/team-member';
 
-import { richTextProps, getPrismicProps, Text, Link, Image, Document } from 'lib/prismic';
-import { RichText } from 'prismic-reactjs';
+import { 
+  linkResolver, 
+  richTextProps, 
+  getPrismicProps, 
+  Document, 
+  Image, 
+  Text, 
+  Link 
+} from 'lib/prismic';
+import { Link as PrismicLink, RichText } from 'prismic-reactjs';
 import { GetStaticProps } from 'next';
 
 interface Member {
@@ -38,7 +46,7 @@ export default function TeamPage({ doc }: TeamPageProps): JSX.Element {
           bio={<RichText {...richTextProps} render={member.bio} />}
           link={{ 
             label: RichText.asText(member.cta_label), 
-            href: member.cta_link.url, 
+            href: PrismicLink.url(member.cta_link, linkResolver), 
           }}
           img={member.image.url}
           flipped={idx % 2 !== 0}
