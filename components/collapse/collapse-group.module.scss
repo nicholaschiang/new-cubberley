@@ -1,0 +1,9 @@
+@use 'styles/common';
+
+.collapseGroupWrapper {
+  border-top: 1px solid var(--accents-2);
+
+  .collapseGroup {
+    @include common.wrapper;
+  }
+}

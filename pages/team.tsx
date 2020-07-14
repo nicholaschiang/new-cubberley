@@ -25,6 +25,14 @@ export default function TeamPage(): JSX.Element {
         link={{ label: 'Portfolio website', href: 'https://nicholaschiang.com' }}
         img={Profile}
         flipped
+        gray
+      />
+      <TeamMember
+        name='Nicholas Chiang'
+        title='Website Developer'
+        bio='A rising junior at Gunn High School passionate about CS, karate, running, cello, and more! Currently helping develop the New Cubberley website and blog.'
+        link={{ label: 'Portfolio website', href: 'https://nicholaschiang.com' }}
+        img={Profile}
       />
       <Footer />
     </>

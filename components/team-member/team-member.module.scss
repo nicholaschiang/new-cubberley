@@ -4,6 +4,10 @@
 .wrapper {
   border-top: 1px solid var(--accents-2);
 
+  &.gray {
+    background: var(--accents-1);
+  }
+
   .content {
     @include common.wrapper;
     display: flex;

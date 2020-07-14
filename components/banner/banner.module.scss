@@ -22,7 +22,7 @@
   }
 
   .background {
-    padding: 48px 0;
+    padding: var(--geist-space-16x) 0;
     background: var(--primary);
 
     .content {

@@ -1,0 +1,62 @@
+.collapse {
+  border-bottom: 1px solid var(--accents-2);
+  padding: var(--geist-gap-double) 0;
+  text-align: left;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .header {
+    font-family: var(--font-sans);
+    color: inherit;
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: -.029375rem;
+    margin: 0;
+    line-height: 1.5;
+    
+    .button {
+      border: unset;
+      background: unset;
+      padding: unset;
+      font: unset;
+      text-align: unset;
+      color: var(--geist-foreground);
+      cursor: pointer;
+      width: 100%;
+      outline: none;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .icon {
+          display: flex;
+          transition: transform .2s ease;
+          
+          &.open {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+    }
+
+    .subtitle {
+      display: block;
+      color: var(--geist-secondary);
+      letter-spacing: normal;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+  }
+
+  .content {
+    font-size: 16px;
+    line-height: 26px;
+    overflow-y: hidden;
+    will-change: height;
+    transition: height .2s ease;
+  }
+}

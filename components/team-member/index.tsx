@@ -11,9 +11,12 @@ interface TeamMemberProps {
   img: string;
   link: { label: string; href: string };
   flipped?: boolean;
+  gray?: boolean;
 }
 
-export default function TeamMember({ name, title, bio, img, link, flipped }: TeamMemberProps): JSX.Element {
+export default function TeamMember(
+  { name, title, bio, img, link, flipped, gray }: TeamMemberProps
+): JSX.Element {
   const imgRef: React.RefObject<HTMLDivElement> = React.useRef(null);
 
   React.useEffect(() => {
@@ -21,7 +24,7 @@ export default function TeamMember({ name, title, bio, img, link, flipped }: Tea
   }, [imgRef]);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper}${gray ? ` ${styles.gray}` : ''}`}>
       <div className={`${styles.content}${flipped ? ` ${styles.flipped}` : ''}`}>
         <div className={styles.left}>
           <div className={styles.name}>{name}</div>
