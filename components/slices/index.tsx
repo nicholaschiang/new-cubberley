@@ -4,8 +4,15 @@ import Spotlight from 'components/spotlight';
 import TeamMember from 'components/team-member';
 
 import { v4 as uuid } from 'uuid';
-import { RichText } from 'prismic-reactjs';
-import { Slice, BannerSlice, SpotlightSlice, TeamMemberSlice } from 'lib/prismic';
+import { Link, RichText } from 'prismic-reactjs';
+import {
+  linkResolver,
+  richTextProps, 
+  Slice, 
+  BannerSlice, 
+  SpotlightSlice, 
+  TeamMemberSlice 
+} from 'lib/prismic';
 
 interface SlicesProps {
   slices: Slice[];
@@ -32,7 +39,10 @@ export default function Slices({ slices }: SlicesProps): JSX.Element {
                 body={RichText.asText(data.content)}
                 label={RichText.asText(data.label)}
                 img={data.image.url}
-                cta={{ label: 'Learn more', href: 'https://example.com' }}
+                cta={{ 
+                  label: RichText.asText(data.cta_label),
+                  href: Link.url(data.cta_link, linkResolver),
+                }}
                 flipped={!spotlightStyled}
                 gray={!spotlightStyled}
                 key={uuid()}
@@ -45,9 +55,12 @@ export default function Slices({ slices }: SlicesProps): JSX.Element {
               <TeamMember
                 name={RichText.asText(data.name)}
                 title={RichText.asText(data.position)}
-                bio={RichText.render(data.bio)}
+                bio={<RichText {...richTextProps} render={data.bio} />}
                 img={data.image.url}
-                link={{ label: 'Learn more', href: 'https://example.com' }}
+                link={{ 
+                  label: RichText.asText(data.cta_label),
+                  href: Link.url(data.cta_link, linkResolver),
+                }}
                 flipped={!spotlightStyled}
                 gray={!spotlightStyled}
                 key={uuid()} 

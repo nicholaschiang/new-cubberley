@@ -51,10 +51,10 @@ declare module 'prismic-reactjs' {
 		Component?: React.ReactNode;
 		elements?: {};
 		htmlSerializer?: HTMLSerializer<React.ReactNode>;
-		linkResolver?: () => string;
+		linkResolver?: (...args: any[]) => string;
 		render?: RichTextBlock[];
 		renderAsText?: any;
-		serializeHyperlink?: () => React.ReactNode;
+		serializeHyperlink?: (...args: any[]) => React.ReactNode;
 	}
 
 	export const RichText: React.FC<RichTextProps> & {

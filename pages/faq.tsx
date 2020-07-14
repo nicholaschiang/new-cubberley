@@ -3,7 +3,7 @@ import Header from 'components/header';
 import Footer from 'components/footer';
 import Title from 'components/title';
 
-import { getPrismicProps, Text, Document } from 'lib/prismic';
+import { richTextProps, getPrismicProps, Text, Document } from 'lib/prismic';
 import { CollapseGroup, Collapse } from 'components/collapse';
 import { RichText } from 'prismic-reactjs';
 import { GetStaticProps } from 'next';
@@ -31,7 +31,7 @@ export default function FAQPage({ doc }: FAQPageProps): JSX.Element {
       <CollapseGroup>
         {doc.data.questions.map((set: FAQSet) => (
           <Collapse key={uuid()} title={RichText.asText(set.question)}>
-            <RichText render={set.answer} />
+            <RichText {...richTextProps} render={set.answer} />
           </Collapse>
         ))}
       </CollapseGroup>

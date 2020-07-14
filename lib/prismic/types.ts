@@ -14,11 +14,33 @@ export interface Image {
   url: string;
 }
 
-export interface Link {
-  link_type: string;
-  target?: string;
+export interface DocumentLink {
+  link_type: 'Document';
+  slug: string;
+  tags: string[];
+  type: string;
+  isBroken: boolean;
+  lang: string;
+  id: string;
+}
+
+export interface MediaLink {
+  link_type: 'Media';
+  kind: string;
+  height: number;
+  width: number;
+  size: number;
+  name: string;
   url: string;
 }
+
+export interface WebLink {
+  link_type: 'Web';
+  target?: '_blank';
+  url: string;
+}
+
+export type Link = DocumentLink | MediaLink | WebLink;
 
 export interface BannerSlice {
   content: Text;
@@ -28,9 +50,9 @@ export interface SpotlightSlice {
   label: Text;
   title: Text;
   content: Text;
+  image: Image;
   cta_link: Link;
   cta_label: Text;
-  image: Image;
 }
 
 export interface TeamMemberSlice {
@@ -38,6 +60,8 @@ export interface TeamMemberSlice {
   position: Text;
   bio: Text;
   image: Image;
+  cta_link: Link;
+  cta_label: Text;
 }
 
 export interface Slice {
