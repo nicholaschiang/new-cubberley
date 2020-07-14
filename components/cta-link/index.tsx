@@ -38,7 +38,7 @@ export default function CTALink({
   const className =
     `${styles.link} ${styles.black}${small ? ` ${styles.small}` : ''}` +
     `${wide ? ` ${styles.wide}` : ''}`;
-  if (href.indexOf('http') < 0)
+  if (href.indexOf('http') < 0 && href.indexOf('mailto') < 0)
     return (
       /* eslint-disable jsx-a11y/anchor-is-valid */
       <Link href={href} as={as}>

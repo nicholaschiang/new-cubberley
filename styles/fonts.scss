@@ -1,35 +1,35 @@
 @mixin header {
   font-size: 36px;
   font-weight: 700;
+  font-family: var(--font-sans);
   letter-spacing: -0.049375rem;
   line-height: 1.2;
 
   @media (min-width: 990px) {
     font-size: 48px;
-    line-height: 1.2;
   }
 }
 
 @mixin subheader {
   font-size: 18px;
   font-weight: 400;
+  font-family: var(--font-sans);
   letter-spacing: -0.049375rem;
   line-height: 1.2;
 
   @media (min-width: 990px) {
     font-size: 24px;
-    line-height: 1.2;
   }
 }
 
 @mixin body {
   font-size: 16px;
   font-weight: 400;
+  font-family: var(--font-sans);
   letter-spacing: -0.01125rem;
   line-height: 1.4;
 
   @media (min-width: 768px) {
-    line-height: 1.4;
     -webkit-letterspacing: unset;
     -moz-letterspacing: unset;
     -ms-letterspacing: unset;
@@ -39,5 +39,26 @@
 
   @media (min-width: 1080px) {
     font-size: 26px;
+  }
+}
+
+@mixin pre {
+  font-size: 12px;
+  font-weight: 400;
+  font-family: var(--font-mono);
+  letter-spacing: -0.01125rem;
+  white-space: normal;
+  line-height: 2;
+
+  @media (min-width: 768px) {
+    -webkit-letterspacing: unset;
+    -moz-letterspacing: unset;
+    -ms-letterspacing: unset;
+    letterspacing: unset;
+    font-size: 18px;
+  }
+
+  @media (min-width: 1080px) {
+    font-size: 22px;
   }
 }

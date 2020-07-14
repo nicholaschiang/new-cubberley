@@ -28,11 +28,8 @@ export default function SpotlightMsg({
   const colorClass: string = gray ? styles.featureSpotlightGray : '';
 
   React.useEffect(() => {
-    if (imgRef.current) VanillaTilt.init(imgRef.current, {
-      startX: flipped ? -5 : 5,
-      max: 10,
-    });
-  }, [imgRef, flipped]);
+    if (imgRef.current) VanillaTilt.init(imgRef.current, { max: 10 });
+  }, [imgRef]);
 
   return (
     <div className={styles.spotlight}>

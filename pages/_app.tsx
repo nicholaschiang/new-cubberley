@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 
@@ -26,5 +27,12 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
     })
   );
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Head>
+        <title>New Cubberley</title>
+      </Head>
+      <Component {...pageProps} />
+    </>
+  );
 }

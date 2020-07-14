@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './banner.module.scss';
 
 interface BannerProps {
-  children: JSX.Element | JSX.Element[] | string;
+  children: React.ReactNode;
 }
 
 export default function Banner({ children }: BannerProps): JSX.Element {

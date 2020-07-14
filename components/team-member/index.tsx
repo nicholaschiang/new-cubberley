@@ -7,7 +7,7 @@ import styles from './team-member.module.scss';
 interface TeamMemberProps {
   name: string;
   title: string;
-  bio: string;
+  bio: React.ReactNode;
   img: string;
   link: { label: string; href: string };
   flipped?: boolean;
@@ -20,7 +20,7 @@ export default function TeamMember(
   const imgRef: React.RefObject<HTMLDivElement> = React.useRef(null);
 
   React.useEffect(() => {
-    if (imgRef.current) VanillaTilt.init(imgRef.current, { glare: true });
+    if (imgRef.current) VanillaTilt.init(imgRef.current, { max: 10 });
   }, [imgRef]);
 
   return (

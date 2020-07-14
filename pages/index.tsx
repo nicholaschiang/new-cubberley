@@ -1,20 +1,31 @@
 import React from 'react';
-import Head from 'next/head';
 import Logo from 'components/logo';
-import About from 'components/about';
 import Header from 'components/header';
 import Footer from 'components/footer';
+import Slices from 'components/slices';
 
-export default function Home(): JSX.Element {
+import { getPrismicProps, Slice, Document } from 'lib/prismic';
+import { GetStaticProps } from 'next';
+
+interface HomePageData {
+  body: Slice[];
+}
+
+interface HomePageProps {
+  doc: Omit<Document, 'data'> & { data: HomePageData };
+}
+
+export default function HomePage({ doc }: HomePageProps): JSX.Element {
   return (
     <>
-      <Head>
-        <title>New Cubberley</title>
-      </Head>
       <Header />
       <Logo />
-      <About />
+      <Slices slices={doc.data.body} />
       <Footer />
     </>
   )
 }
+
+export const getStaticProps: GetStaticProps = async (context) => ({
+  props: await getPrismicProps<HomePageData>('homepage', context),
+});

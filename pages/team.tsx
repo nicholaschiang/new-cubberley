@@ -4,37 +4,52 @@ import Footer from 'components/footer';
 import Title from 'components/title';
 import TeamMember from 'components/team-member';
 
-import Profile from '../profile.png';
+import { getPrismicProps, Text, Link, Image, Document } from 'lib/prismic';
+import { RichText } from 'prismic-reactjs';
+import { GetStaticProps } from 'next';
 
-export default function TeamPage(): JSX.Element {
+interface Member {
+  name: Text;
+  position: Text;
+  bio: Text;
+  cta_link: Link;
+  cta_label: Text;
+  image: Image;
+}
+
+interface TeamData {
+  members: Member[];
+  title: Text;
+}
+
+interface TeamPageProps {
+  doc: Omit<Document, 'data'> & { data: TeamData };
+}
+
+export default function TeamPage({ doc }: TeamPageProps): JSX.Element {
   return (
     <>
       <Header />
-      <Title>Meet the Team</Title>
-      <TeamMember
-        name='Nicholas Chiang'
-        title='Website Developer'
-        bio='A rising junior at Gunn High School passionate about CS, karate, running, cello, and more! Currently helping develop the New Cubberley website and blog.'
-        link={{ label: 'Portfolio website', href: 'https://nicholaschiang.com' }}
-        img={Profile}
-      />
-      <TeamMember
-        name='Nicholas Chiang'
-        title='Website Developer'
-        bio='A rising junior at Gunn High School passionate about CS, karate, running, cello, and more! Currently helping develop the New Cubberley website and blog.'
-        link={{ label: 'Portfolio website', href: 'https://nicholaschiang.com' }}
-        img={Profile}
-        flipped
-        gray
-      />
-      <TeamMember
-        name='Nicholas Chiang'
-        title='Website Developer'
-        bio='A rising junior at Gunn High School passionate about CS, karate, running, cello, and more! Currently helping develop the New Cubberley website and blog.'
-        link={{ label: 'Portfolio website', href: 'https://nicholaschiang.com' }}
-        img={Profile}
-      />
+      <Title>{RichText.asText(doc.data.title)}</Title>
+      {doc.data.members.map((member: Member, idx: number) => (
+        <TeamMember
+          name={RichText.asText(member.name)}
+          title={RichText.asText(member.position)}
+          bio={RichText.render(member.bio)}
+          link={{ 
+            label: RichText.asText(member.cta_label), 
+            href: member.cta_link.url, 
+          }}
+          img={member.image.url}
+          flipped={idx % 2 !== 0}
+          gray={idx % 2 !== 0}
+        />
+      ))}
       <Footer />
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => ({
+  props: await getPrismicProps<TeamData>('team', context),
+});

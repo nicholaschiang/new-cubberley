@@ -3,55 +3,43 @@ import Header from 'components/header';
 import Footer from 'components/footer';
 import Title from 'components/title';
 
+import { getPrismicProps, Text, Document } from 'lib/prismic';
 import { CollapseGroup, Collapse } from 'components/collapse';
+import { RichText } from 'prismic-reactjs';
+import { GetStaticProps } from 'next';
+import { v4 as uuid } from 'uuid';
 
-export default function FAQPage(): JSX.Element {
+interface FAQSet {
+  question: Text;
+  answer: Text;
+}
+
+interface FAQData {
+  questions: FAQSet[];
+  title: Text;
+}
+
+interface FAQPageProps {
+  doc: Omit<Document, 'data'> & { data: FAQData };
+}
+
+export default function FAQPage({ doc }: FAQPageProps): JSX.Element {
   return (
     <>
       <Header />
-      <Title>FAQ</Title>
+      <Title>{RichText.asText(doc.data.title)}</Title>
       <CollapseGroup>
-        <Collapse title='Why is New Cubberley awesome?'>
-          <p>
-            Tempore accusantium ut voluptates non ab quo id fugit. <b>Minima est 
-            quaerat modi nisi quisquam consequatur dolor ut.</b> Facilis dolorum 
-            ex non similique. Quasi deserunt possimus eveniet omnis est laborum 
-            voluptas et.
-          </p>
-          <p>
-            Fuga doloribus ducimus fuga illo consequatur occaecati quidem iure. 
-            Provident vitae quibusdam eaque consequuntur voluptas. Maxime ut ut 
-            ad. Laudantium qui eaque et ipsum explicabo accusantium rerum.
-          </p>
-        </Collapse>
-        <Collapse title='Who built such an awesome site for them?'>
-          <p>
-            Tempore accusantium ut voluptates non ab quo id fugit. Minima est 
-            quaerat modi nisi quisquam consequatur dolor ut. Facilis dolorum ex 
-            non similique. Quasi deserunt possimus eveniet omnis est laborum 
-            voluptas et.
-          </p>
-          <p>
-            Fuga doloribus ducimus fuga illo consequatur occaecati quidem iure. 
-            Provident vitae quibusdam eaque consequuntur voluptas. Maxime ut ut 
-            ad. Laudantium qui eaque et ipsum explicabo accusantium rerum.
-          </p>
-        </Collapse>
-        <Collapse title='Where is New Cubberley located?'>
-          <p>
-            Tempore accusantium ut voluptates non ab quo id fugit. Minima est 
-            quaerat modi nisi quisquam consequatur dolor ut. Facilis dolorum ex 
-            non similique. Quasi deserunt possimus eveniet omnis est laborum 
-            voluptas et.
-          </p>
-          <p>
-            Fuga doloribus ducimus fuga illo consequatur occaecati quidem iure. 
-            Provident vitae quibusdam eaque consequuntur voluptas. Maxime ut ut 
-            ad. Laudantium qui eaque et ipsum explicabo accusantium rerum.
-          </p>
-        </Collapse>
+        {doc.data.questions.map((set: FAQSet) => (
+          <Collapse key={uuid()} title={RichText.asText(set.question)}>
+            <RichText render={set.answer} />
+          </Collapse>
+        ))}
       </CollapseGroup>
       <Footer />
     </>
   );
 }
+
+export const getStaticProps: GetStaticProps = async (context) => ({
+  props: await getPrismicProps<FAQData>('faq', context),
+});

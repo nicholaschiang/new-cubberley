@@ -95,7 +95,7 @@
 .featureSpotlightMedia {
   text-align: center;
   grid-column: 2 / span 12;
-  border-radius: 8px;
+  border-radius: var(--geist-marketing-radius);
   transition: 200ms box-shadow;
   background-size: cover;
   background-position: center;

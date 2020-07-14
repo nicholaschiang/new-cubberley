@@ -1,4 +1,5 @@
 @use 'styles/common';
+@use 'styles/fonts';
 
 .wrapper {
   width: 100vw;
@@ -28,6 +29,22 @@
     .content {
       @include common.wrapper;
       color: var(--on-primary);
+
+      h2 {
+        @include fonts.header;
+      }
+
+      p, li {
+        @include fonts.body;
+      }
+
+      pre {
+        @include fonts.pre;
+        border-radius: var(--geist-marketing-radius);
+        padding: var(--geist-space-8x);
+        background: var(--geist-background);
+        color: var(--geist-foreground);
+      } 
     }
   }
 }
