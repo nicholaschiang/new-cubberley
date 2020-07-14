@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './email-form.module.scss';
-
 declare global {
   interface Window {
     fnames: string[];
